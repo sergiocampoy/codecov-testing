@@ -2,6 +2,7 @@
 
 BLU=\n\033[34;3m
 RST=\033[00m
+CFLAGS=--coverage
 
 all: compile run coverage report
 
@@ -19,9 +20,9 @@ run: compile
 
 coverage: run
 	@echo "$(BLU)Generating coverage analytics...$(RST)"
-	gcov -b -u module1
-	gcov -b -u module2
-	gcov -b -u main
+	gcov -abcfu module1
+	gcov -abcfu module2
+	gcov -abcfu main
 
 report: coverage
 	@echo "$(BLU)Generating html reports...$(RST)"
@@ -31,13 +32,13 @@ report: coverage
 
 # Compile stuff
 main.o: main.c
-	gcc -fprofile-arcs -ftest-coverage -c main.c
+	gcc $(CFLAGS) -c main.c
 
 module1.o: module1.c
-	gcc -fprofile-arcs -ftest-coverage -c module1.c -I.
+	gcc $(CFLAGS) -c module1.c -I.
 
 module2.o: module2.c
-	gcc -fprofile-arcs -ftest-coverage -c module2.c -I.
+	gcc $(CFLAGS) -c module2.c -I.
 
 main.out: main.o module1.o module2.o
-	gcc -fprofile-arcs -ftest-coverage main.o module1.o module2.o -o main.out
+	gcc $(CFLAGS) main.o module1.o module2.o -o main.out
