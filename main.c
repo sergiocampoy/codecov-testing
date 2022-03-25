@@ -17,6 +17,7 @@ int main() {
 
     // Function from module 2
     feed(SHARK);
+    feed(DOG);
 
     int a, b;
     a = 5;

@@ -8,3 +8,4 @@ out
 .vscode
 *.swp
 *.html
+coverage.xml
