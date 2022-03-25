@@ -27,6 +27,7 @@ report: coverage
 	@echo "$(BLU)Generating html reports...$(RST)"
 	lcov --capture --directory . --output-file coverage.info -rc lcov_branch_coverage=1
 	genhtml coverage.info --output-directory out --branch-coverage
+	gcovr -x coverage.xml
 
 # Compile stuff
 main.o: main.c

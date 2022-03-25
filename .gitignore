@@ -6,3 +6,5 @@
 coverage.info
 out
 .vscode
+*.swp
+*.html
