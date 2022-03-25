@@ -12,6 +12,8 @@ int main() {
     find(DOG);
     find(CAT);
     find(DOG);
+    find(SHARK);
+    find(NaN);
 
     // Function from module 2
     feed(SHARK);

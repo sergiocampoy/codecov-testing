@@ -6,7 +6,8 @@
 enum ANIMAL {
     CAT,
     DOG,
-    SHARK
+    SHARK,
+    NaN // Not aN aNimal
 };
 
 void find(enum ANIMAL animal_found);
