@@ -1,0 +1,8 @@
+*.gcda
+*.gcno
+*.gcov
+*.out
+*.o
+coverage.info
+out
+.vscode

@@ -1,9 +1,9 @@
-.PHONY: all clean coverage run
+.PHONY: all clean precompile compile run coverage report
 
-BLU=\033[34;3m
+BLU=\n\033[34;3m
 RST=\033[00m
 
-all: compile run coverage
+all: compile run coverage report
 
 clean:
 	@echo "$(BLU)Cleaning...$(RST)"
@@ -17,17 +17,18 @@ run: compile
 	@echo "$(BLU)Running program...$(RST)"
 	./main.out
 
-coverage:
-	@echo "$(BLU)Creating coverage analytics...$(RST)"
+coverage: run
+	@echo "$(BLU)Generating coverage analytics...$(RST)"
 	gcov -b -u module1
 	gcov -b -u module2
 	gcov -b -u main
 
-report:
+report: coverage
+	@echo "$(BLU)Generating html reports...$(RST)"
 	lcov --capture --directory . --output-file coverage.info -rc lcov_branch_coverage=1
 	genhtml coverage.info --output-directory out --branch-coverage
 
-
+# Compile stuff
 main.o: main.c
 	gcc -fprofile-arcs -ftest-coverage -c main.c
 
